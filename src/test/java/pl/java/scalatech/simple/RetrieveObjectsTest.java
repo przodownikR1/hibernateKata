@@ -104,11 +104,16 @@ public class RetrieveObjectsTest {
     @Test
     public void should_E_RetrieveUniqueObjectIfNotExists() {
         Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
         try {
-            Query query = session.createQuery("from " + Item.class.getSimpleName() + " WHERE id = :id");
+            Query query = session.createQuery("DELETE FROM "+Item.class.getSimpleName());
+            query.executeUpdate();
+            tx.commit();
+            query = session.createQuery("from " + Item.class.getSimpleName() + " WHERE id = :id");
             query.setParameter("id", 2l);
             assertThat(query.uniqueResult()).isNull();
         } catch (Exception e) {
+            tx.rollback();
             log.error("{}", e);
         } finally {
             session.close();

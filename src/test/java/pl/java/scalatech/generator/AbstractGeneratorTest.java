@@ -1,3 +1,4 @@
+
 package pl.java.scalatech.generator;
 
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;

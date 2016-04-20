@@ -32,12 +32,15 @@ public class SimpleMessageJdbcTest {
     }*/
 
 
+
+
     @Test
     public void shouldSqlInitActionWork() {
         SimpleMessageJdbcRepository smRepo = new SimpleMessageJdbcRepository();
         smRepo.readSimpleMessage();
         log.info("+++ ");
     }
+
     @After
     public void after(){
         //DatabaseManagerSwing.main(new String[] { "--url", "jdbc:h2:mem:testdb", "--user", "sa", "--password", "" });

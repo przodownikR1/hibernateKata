@@ -3,30 +3,45 @@ package pl.java.scalatech.basic;
 import java.util.List;
 import java.util.Map;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.jdbc.JdbcTestUtils;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.java.scalatech.config.JdbcConfig;
+import pl.java.scalatech.SimpleSpringJDBC;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=JdbcConfig.class)
 @SqlDataAccount
 @ActiveProfiles("test")
 @Slf4j
-public class SpringMessageJdbcTest {
-        @Autowired JdbcTemplate jdbcTemplate;
+public class SpringMessageJdbcTest extends SimpleSpringJDBC{
+
 
         @Test
-        public void contextLoads() {
+        public void should_A_SAVE_RECORD(){
+            log.info("SAVE RECORD");
+            String sql = "insert into SimpleMessages (id, MESSAGE_TEXT) values (4, 'JDBCTEMPLATE INSERT !')";
+            jdbcTemplate.execute(sql);
+            retrieveObjects();
+            Assertions.assertThat(countRowsInTable("SimpleMessages")).isEqualTo(4);
+        }
+
+        private void retrieveObjects() {
             String selectQuery = "SELECT * from SimpleMessages";
             List<Map<String, Object>> resultSet = jdbcTemplate.queryForList(selectQuery);
-            log.info("RESULT : {}",resultSet);
+            resultSet.stream().forEach(record -> log.info("{}",record));
+        }
+
+        @Override
+        protected int countRowsInTable(String tableName) {
+            return JdbcTestUtils.countRowsInTable(jdbcTemplate, tableName);
+        }
+
+        @Test
+        public void should_B_RetrieveRecords() {
+            log.info("RETRIEVE OBJECTS");
+            retrieveObjects();
+            Assertions.assertThat(countRowsInTable("SimpleMessages")).isEqualTo(3);
         }
 
 }

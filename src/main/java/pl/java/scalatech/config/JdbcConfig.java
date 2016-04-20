@@ -1,5 +1,7 @@
 package pl.java.scalatech.config;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,17 @@ public class JdbcConfig {
     @Profile(value = { "dev", "test" })
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+    }
+
+    @Configuration
+    @Profile("production")
+    public class JndiDataConfig {
+
+        @Bean(destroyMethod="")
+        public DataSource dataSource() throws Exception {
+            Context ctx = new InitialContext();
+            return (DataSource) ctx.lookup("java:comp/env/jdbc/datasource");
+        }
     }
 
     /*

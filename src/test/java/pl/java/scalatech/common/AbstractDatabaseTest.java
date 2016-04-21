@@ -1,4 +1,4 @@
-package pl.java.scalatech;
+package pl.java.scalatech.common;
 
 import org.springframework.test.context.jdbc.Sql;
 

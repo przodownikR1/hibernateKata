@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.java.scalatech.JPAUnitTestCase;
+import pl.java.scalatech.common.JPAUnitTestCase;
 import pl.java.scalatech.domain.Item;
 @Slf4j
 public class SimpleUseJpaTempateTest extends JPAUnitTestCase

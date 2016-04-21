@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.java.scalatech.SimpleSpringJDBC;
+import pl.java.scalatech.common.SimpleSpringJDBC;
 
 @SqlDataAccount
 @ActiveProfiles("test")

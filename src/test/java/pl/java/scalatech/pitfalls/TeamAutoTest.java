@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.java.scalatech.EntityManagerTestCase;
+import pl.java.scalatech.common.EntityManagerTestCase;
 import pl.java.scalatech.domain.pitfalls.Player;
 import pl.java.scalatech.domain.pitfalls.Team;
 
@@ -41,7 +41,7 @@ public class TeamAutoTest extends EntityManagerTestCase{
     protected Map<String, Object> getOverrideProps() {
         Map<String,Object> addedOrOverridenProperties = new HashMap<>();
         addedOrOverridenProperties.put("hibernate.show_sql", false);
-       // addedOrOverridenProperties.put("hibernate.archive.autodetection", "true");
+        addedOrOverridenProperties.put("hibernate.generate_statistics", false);
 
         return addedOrOverridenProperties;
     }

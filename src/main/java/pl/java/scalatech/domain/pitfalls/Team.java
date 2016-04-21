@@ -1,12 +1,12 @@
 package pl.java.scalatech.domain.pitfalls;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-
-import org.assertj.core.util.Lists;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +25,5 @@ public class Team extends AbstractEntity{
 
     private String name;
     @OneToMany(cascade=CascadeType.ALL)
-    private List<Player> players = Lists.newArrayList();
+    private List<Player> players = newArrayList();
 }

@@ -1,4 +1,4 @@
-package pl.java.scalatech;
+package pl.java.scalatech.common;
 
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 
@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 
 import lombok.extern.slf4j.Slf4j;
+
 @FixMethodOrder(NAME_ASCENDING)
 @Slf4j
 public abstract class EntityManagerTestCase {
@@ -31,9 +32,8 @@ public abstract class EntityManagerTestCase {
     @Before
     public void openFactory() throws Exception {
 
-        factory = Persistence.createEntityManagerFactory(UNIT_NAME,getOverrideProps());
-
-
+        factory = Persistence.createEntityManagerFactory(UNIT_NAME, getOverrideProps());
+        log.info("+++ create factory and entityManager and open transation");
         manager = factory.createEntityManager();
         manager.getTransaction().begin();
     }
@@ -48,6 +48,7 @@ public abstract class EntityManagerTestCase {
         if (manager.isOpen()) {
             manager.close();
         }
+        log.info("+++ commit transaction , close entityManager and entityManagerFactory");
         factory.close();
     }
 }

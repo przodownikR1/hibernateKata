@@ -10,7 +10,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.java.scalatech.AbstractHibTest;
+import pl.java.scalatech.common.AbstractHibTest;
 
 @Slf4j
 @FixMethodOrder(NAME_ASCENDING)

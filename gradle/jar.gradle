@@ -8,7 +8,11 @@ group = 'theGroup'
 version = 'theVersion'
 
 
-
+ test {
+        
+            exclude 'pl/java/scalatech/common/**'
+        
+    }
 
 
 sourceSets {

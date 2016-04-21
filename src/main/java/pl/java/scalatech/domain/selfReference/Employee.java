@@ -1,5 +1,7 @@
 package pl.java.scalatech.domain.selfReference;
 
+import static com.google.common.collect.Sets.newHashSet;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.assertj.core.util.Sets;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,7 +38,7 @@ public class Employee extends AbstractEntity{
     private Employee manager;
 
     @OneToMany(mappedBy="manager",cascade={CascadeType.ALL})
-    private Set<Employee> subordinates = Sets.newHashSet();
+    private Set<Employee> subordinates = newHashSet();
 
     public Employee(String firstname, String lastname) {
         super();

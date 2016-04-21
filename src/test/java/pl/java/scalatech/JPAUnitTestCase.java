@@ -16,6 +16,7 @@ public abstract class JPAUnitTestCase {
     @Before
     public void init() {
         entityManagerFactory = Persistence.createEntityManagerFactory( "PU" );
+
     }
 
     @After

@@ -47,5 +47,9 @@ public class FilterTest extends ORMStandaloneTestCase{
     protected Class<?> getEntityClass() {
         return Pupil.class;
     }
+    @Override
+    protected String packageBase() {
+        return null;
+    }
 
 }

@@ -35,6 +35,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'groovy'
 apply from : 'gradle/jar.gradle'
 apply from : 'gradle/depencencies.gradle'
+//apply from : 'gradle/queryDSL.gradle'
 apply from : 'gradle/gradleProperties.gradle'
 //apply from : 'gradle/distribution.gradle'
 

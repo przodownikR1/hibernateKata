@@ -6,6 +6,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.Before;
 
+import pl.java.scalatech.domain.manyToMany.Crew;
+import pl.java.scalatech.domain.manyToMany.Tank;
+
 public abstract class ORMStandaloneTestCase {
 
     protected SessionFactory sf;
@@ -24,15 +27,21 @@ public abstract class ORMStandaloneTestCase {
 			.applySetting( "hibernate.connection.password", "" )
 			.applySetting( "hibernate.use_sql_comment", "true" )
 			;
-
-		Metadata metadata = new MetadataSources( srb.build() )
-            .addAnnotatedClass(getEntityClass())
-            .buildMetadata();
+		Metadata metadata  = null;
+		if(packageBase()== null){
+		metadata= new MetadataSources( srb.build() ).addAnnotatedClass(getEntityClass()).buildMetadata();
+		}else{
+		    metadata= new MetadataSources( srb.build() ).addAnnotatedClass(Tank.class).addAnnotatedClass(Crew.class).addPackage(packageBase()).buildMetadata();
+		}
 
         sf = metadata.buildSessionFactory();
     }
 
     abstract protected Class<?> getEntityClass();
+
+    abstract protected String packageBase();
+
+
 
 
 }

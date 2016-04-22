@@ -7,7 +7,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.Before;
 
 import pl.java.scalatech.domain.manyToMany.Crew;
+import pl.java.scalatech.domain.manyToMany.CrewBi;
 import pl.java.scalatech.domain.manyToMany.Tank;
+import pl.java.scalatech.domain.manyToMany.TankBi;
 
 public abstract class ORMStandaloneTestCase {
 
@@ -31,7 +33,12 @@ public abstract class ORMStandaloneTestCase {
 		if(packageBase()== null){
 		metadata= new MetadataSources( srb.build() ).addAnnotatedClass(getEntityClass()).buildMetadata();
 		}else{
-		    metadata= new MetadataSources( srb.build() ).addAnnotatedClass(Tank.class).addAnnotatedClass(Crew.class).addPackage(packageBase()).buildMetadata();
+		    metadata= new MetadataSources( srb.build() )
+		            .addAnnotatedClass(Tank.class)
+		            .addAnnotatedClass(Crew.class)
+		            .addAnnotatedClass(TankBi.class)
+                    .addAnnotatedClass(CrewBi.class)
+		            .addPackage(packageBase()).buildMetadata();
 		}
 
         sf = metadata.buildSessionFactory();

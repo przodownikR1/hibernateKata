@@ -30,4 +30,6 @@ public class HibernateTemplateTest {
      //   Assertions.assertThat(datasource).isNotNull();
        //Assertions.assertThat(hibernate5Template).isNotNull();
     }
+
+
 }

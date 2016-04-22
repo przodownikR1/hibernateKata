@@ -26,6 +26,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 abstract class SpringHibernateConfig {
 
+    //<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+    //<!-- Database LOB Handling -->
+    //<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" />
+
     public SpringHibernateConfig() {
       log.info("SpringHibernateConfig() ");
     }

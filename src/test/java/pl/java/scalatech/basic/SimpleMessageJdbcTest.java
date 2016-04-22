@@ -1,7 +1,6 @@
 package pl.java.scalatech.basic;
 
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
@@ -36,7 +35,7 @@ public class SimpleMessageJdbcTest {
 
 
     @Test
-    @Ignore
+    //@Ignore
     //TODO nie znajduje tabeli Schemat !!!!!
     public void shouldSqlInitActionWork() {
         SimpleMessageJdbcRepository smRepo = new SimpleMessageJdbcRepository();

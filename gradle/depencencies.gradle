@@ -23,12 +23,15 @@ repositories {
     mavenCentral()
 }
 
+ext{
+    hikariCPVersion ="2.2.5"
+}
 
 dependencies {
     //compile('org.springframework.boot:spring-boot-starter-actuator')
-//     compile('org.springframework.boot:spring-boot-starter-data-jpa'){
-//         exclude module: 'hibernate-entitymanager'
-//    }
+      compile('org.springframework.boot:spring-boot-starter-data-jpa'){
+         exclude module: 'hibernate-entitymanager'
+    }
 //    compile('org.springframework.boot:spring-boot-devtools')    
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
@@ -52,6 +55,8 @@ dependencies {
     compile 'org.hibernate:hibernate-validator:5+'
     compile 'org.hibernate:hibernate-core:5.1.0.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+       
+    compile "com.zaxxer:HikariCP:${hikariCPVersion}"
     compile 'org.lazyluke:log4jdbc-remix:0.2.7'
     compile 'com.h2database:h2'
 
@@ -79,6 +84,8 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'net.sf.json-lib:json-lib:2.4:jdk15'
     testCompile('pl.pragmatists:JUnitParams:1.0.4')    
+    testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
@@ -93,7 +100,7 @@ configurations {
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         if (details.requested.group == 'org.springframework') {
-            details.useVersion '4.2.4.RELEASE'
+            details.useVersion '4.2.5.RELEASE'
         }
         
         if (details.requested.group == 'ch.qos.logback') {

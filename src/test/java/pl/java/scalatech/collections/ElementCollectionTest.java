@@ -8,7 +8,7 @@ import org.junit.FixMethodOrder;
 
 import com.google.common.collect.Sets;
 
-import pl.java.scalatech.AbstractConcreteClazzHibTest;
+import pl.java.scalatech.common.AbstractConcreteClazzHibTest;
 import pl.java.scalatech.domain.collection.AddressCollect;
 import pl.java.scalatech.domain.collection.CustomerCollect;
 

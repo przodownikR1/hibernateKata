@@ -1,4 +1,4 @@
-package pl.java.scalatech;
+package pl.java.scalatech.common;
 
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 
@@ -16,6 +16,7 @@ public abstract class JPAUnitTestCase {
     @Before
     public void init() {
         entityManagerFactory = Persistence.createEntityManagerFactory( "PU" );
+
     }
 
     @After

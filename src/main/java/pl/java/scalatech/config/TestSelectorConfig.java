@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableJpaRepositories(basePackages="pl.java.scalatech.repository.data")
 @EntityScan(basePackages="pl.java.scalatech.domain"/*,basePackageClasses={Jsr310JpaConverters.class}*/)
 //@EnableAutoConfiguration
-@Import({DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@Import({PropertiesLoader.class,DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @Profile("test")
 @Slf4j
 public class TestSelectorConfig {

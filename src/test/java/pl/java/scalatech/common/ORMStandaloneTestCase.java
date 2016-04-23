@@ -5,32 +5,50 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.Before;
-import org.junit.Test;
+
+import pl.java.scalatech.domain.manyToMany.Crew;
+import pl.java.scalatech.domain.manyToMany.CrewBi;
+import pl.java.scalatech.domain.manyToMany.Tank;
+import pl.java.scalatech.domain.manyToMany.TankBi;
 
 public abstract class ORMStandaloneTestCase {
 
-	private SessionFactory sf;
+    protected SessionFactory sf;
+
 
 	@Before
 	public void setup() {
 		StandardServiceRegistryBuilder srb = new StandardServiceRegistryBuilder()
 			.applySetting( "hibernate.show_sql", "true" )
 			.applySetting( "hibernate.format_sql", "true" )
-			.applySetting( "hibernate.hbm2ddl.auto", "update" );
+			.applySetting( "hibernate.hbm2ddl.auto", "update" )
+			.applySetting( "hibernate.dialect", "org.hibernate.dialect.H2Dialect" )
+			.applySetting( "hibernate.connection.driver_class", "org.h2.Driver" )
+			.applySetting( "hibernate.connection.url", "jdbc:h2:mem:testdbHibernate" )
+			.applySetting( "hibernate.connection.username", "sa" )
+			.applySetting( "hibernate.connection.password", "" )
+			.applySetting( "hibernate.use_sql_comment", "true" )
+			;
+		Metadata metadata  = null;
+		if(packageBase()== null){
+		metadata= new MetadataSources( srb.build() ).addAnnotatedClass(getEntityClass()).buildMetadata();
+		}else{
+		    metadata= new MetadataSources( srb.build() )
+		            .addAnnotatedClass(Tank.class)
+		            .addAnnotatedClass(Crew.class)
+		            .addAnnotatedClass(TankBi.class)
+                    .addAnnotatedClass(CrewBi.class)
+		            .addPackage(packageBase()).buildMetadata();
+		}
 
-		Metadata metadata = new MetadataSources( srb.build() )
-            .addAnnotatedClass(getEntityClass())
-			.buildMetadata();
+        sf = metadata.buildSessionFactory();
+    }
 
-		sf = metadata.buildSessionFactory();
-	}
+    abstract protected Class<?> getEntityClass();
 
-	abstract protected Class<?> getEntityClass();
+    abstract protected String packageBase();
 
 
 
-	@Test
-	public void hhh123Test() throws Exception {
 
-	}
 }

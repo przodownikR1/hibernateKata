@@ -34,8 +34,9 @@ public class StatisticsJPATest {
         } catch (Exception ex) {
             log.info("{}",ex);
         } finally {
-
-            em.close();
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
         }
     }
     @Test

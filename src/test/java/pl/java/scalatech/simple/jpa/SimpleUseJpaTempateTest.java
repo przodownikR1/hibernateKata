@@ -34,7 +34,10 @@ public class SimpleUseJpaTempateTest extends JPAUnitTestCase
         } catch (Exception ex) {
             log.info("{}", ex);
         } finally {
-            entityManager.close();
+            if (entityManager != null && entityManager.isOpen()) {
+                entityManager.close();
+            }
+
         }
     }
 

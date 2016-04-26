@@ -1,4 +1,4 @@
-package pl.java.scalatech.domain.oneToOne;
+package pl.java.scalatech.domain.oneToOne.normal;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.java.scalatech.domain.AbstractEntity;
+import pl.java.scalatech.domain.oneToOne.Email;
 
 @Entity
 @Data

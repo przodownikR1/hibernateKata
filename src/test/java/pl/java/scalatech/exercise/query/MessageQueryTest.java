@@ -39,7 +39,7 @@ public class MessageQueryTest extends ORMStandaloneClassTestCase {
         try {
 
             assertThat(session.getNamedQuery("Message.list").list()).hasSize(2);
-            assertThat(session.getNamedQuery("Message.byId").setLong("id", 1l).list()).hasSize(1);
+            assertThat(session.getNamedQuery("Message.byId").setComment("This is my next select").setLong("id", 1l).list()).hasSize(1);
         } catch (Exception e) {
             log.error("{}", e);
         } finally {

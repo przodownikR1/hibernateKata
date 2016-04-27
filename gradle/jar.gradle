@@ -7,13 +7,10 @@ targetCompatibility = 1.8
 group = 'theGroup'
 version = 'theVersion'
 
-
  test {
-        
-            exclude 'pl/java/scalatech/common/**'
-        
+             ignoreFailures = true
+              exclude 'pl/java/scalatech/common/**'        
     }
-
 
 sourceSets {
     intTest

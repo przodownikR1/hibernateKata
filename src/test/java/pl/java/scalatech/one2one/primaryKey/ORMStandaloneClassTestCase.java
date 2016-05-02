@@ -1,4 +1,4 @@
-package pl.java.scalatech.one2one;
+package pl.java.scalatech.one2one.primaryKey;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -7,7 +7,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.junit.BeforeClass;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.java.scalatech.domain.oneToOne.ordinary.EmailMessage;
+import pl.java.scalatech.domain.oneToOne.primary.Email;
+import pl.java.scalatech.domain.oneToOne.primary.EmailMessage;
+
 
 @Slf4j
 public abstract class ORMStandaloneClassTestCase {
@@ -30,7 +32,7 @@ public abstract class ORMStandaloneClassTestCase {
                 .applySetting("hibernate.use_sql_comment", "true");
         Metadata metadata = null;
         log.info("+++ setup");
-        metadata = new MetadataSources(srb.build()).addAnnotatedClass(EmailMessage.class).addAnnotatedClass(EmailMessage.class).buildMetadata();
+        metadata = new MetadataSources(srb.build()).addAnnotatedClass(EmailMessage.class).addAnnotatedClass(Email.class).buildMetadata();
 
         sf = metadata.buildSessionFactory();
         // @formatter:on

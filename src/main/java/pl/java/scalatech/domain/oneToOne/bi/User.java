@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import pl.java.scalatech.domain.AbstractEntity;
 
 @Entity
@@ -17,11 +18,22 @@ import pl.java.scalatech.domain.AbstractEntity;
 @NoArgsConstructor
 @Builder
 @Table(name = "USERS")
+@ToString(exclude="address")
 public class User extends AbstractEntity {
 
     private String login;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     protected Address address;
+
+
     // ...
+
+
+    public void addAddress(Address address){
+        address.setUser(this);
+        setAddress(address);
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package pl.java.scalatech.domain.manyToOne;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,9 +17,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Offer {
-    @ManyToOne
-    @JoinColumn(name = "ITEM_ID", nullable = false,
 
+    @ManyToOne(fetch = FetchType.LAZY) // Defaults to EAGER
+    @JoinColumn(name = "ITEM_ID", nullable = false,
     foreignKey = @ForeignKey(name = "FK_ITEM_ID") )
     private Item item;
 

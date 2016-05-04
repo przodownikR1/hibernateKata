@@ -18,7 +18,7 @@ import pl.java.scalatech.domain.common.Address;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
+@ToString(exclude="address")
 @Builder
 public class Company extends AbstractEntity{
 

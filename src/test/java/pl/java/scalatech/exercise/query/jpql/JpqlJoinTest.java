@@ -18,10 +18,9 @@ import pl.java.scalatech.domain.common.Address;
 import pl.java.scalatech.domain.exercise.query.jpql.Company;
 import pl.java.scalatech.domain.exercise.query.jpql.Department;
 import pl.java.scalatech.domain.exercise.query.jpql.Employee;
-
 @Slf4j
 @FixMethodOrder(NAME_ASCENDING)
-public class JpqlTest extends ORMStandaloneClassTestCase{
+public class JpqlJoinTest  extends ORMStandaloneClassTestCase{
 
     @BeforeClass
     public static  void populateDB(){
@@ -60,60 +59,13 @@ public class JpqlTest extends ORMStandaloneClassTestCase{
         }
 
     }
-    @Test
-    public void shouldRetrieveAllCompany(){
-        Session session = sf.openSession();
-        try {
-         session.createQuery("FROM Company").list().forEach(c->log.info("{}",c));
-         session.createQuery("select count(*) FROM Company").list().forEach(c->log.info("{}",c));
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
-    @Test
-    public void shouldRetrieveAllDept(){
-        Session session = sf.openSession();
-        try {
-         session.createQuery("FROM "+Department.class.getSimpleName()).list().forEach(c->log.info("{}",c));
-         session.createQuery("select count(*) FROM "+Department.class.getSimpleName()).list().forEach(c->log.info("all dept size : {}",c));
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
-    @Test
-    public void shouldRetrieveAllEmployee(){
-        Session session = sf.openSession();
-        try {
-         session.createQuery("FROM "+Employee.class.getSimpleName()).list().forEach(c->log.info("{}",c));
-         session.createQuery("select count(*) FROM "+Employee.class.getSimpleName()).list().forEach(c->log.info("all employee : {}",c));
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
-    @Test
-    public void shouldRetrieveByNaturalId(){
-        Session session = sf.openSession();
-        try {
-        Employee employee = session.bySimpleNaturalId(Employee.class).load("131");
-        log.info("by naturalId : {}",employee);
 
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
+
     @Test
-    public void shouldRetriveAllUserWhereSalaryGreaterThan10000(){
+    public void shouldRetriveAllWhereWorkInCompany(){
         Session session = sf.openSession();
         try {
-         session.createQuery("FROM "+Employee.class.getSimpleName() +" e WHERE e.salary > :salary ").setParameter("salary",BigDecimal.valueOf(10000)).list().forEach(c->log.info("+++  {}",c));
+         session.createQuery("SELECT e.lastName ,c.name  FROM "+Employee.class.getSimpleName() +" e join e.company c WHERE c.name = :name").setParameter("name","commarch").list().forEach(c->log.info("+++  {}",c));
 
         } catch (Exception e) {
             log.error("{}", e);
@@ -123,10 +75,10 @@ public class JpqlTest extends ORMStandaloneClassTestCase{
     }
 
     @Test
-    public void shouldRetriveAllUserWhereSalaryGreaterThan10000Narrow(){
+    public void shouldRetriveAllWhereWorkInDEPT(){
         Session session = sf.openSession();
         try {
-         session.createQuery("SELECT e.lastName ,e.salary  FROM "+Employee.class.getSimpleName() +" e WHERE e.salary > :salary order by e.salary desc").setParameter("salary",BigDecimal.valueOf(10000)).list().forEach(c->log.info("+++  {}",c));
+         session.createQuery("SELECT e.lastName ,c.name , d.name FROM "+Employee.class.getSimpleName() +" e left join e.company c left join c.depts d  WHERE  d.name =  :name").setParameter("name","JAVA").list().forEach(c->log.info("+++  {}",c));
 
         } catch (Exception e) {
             log.error("{}", e);
@@ -135,7 +87,16 @@ public class JpqlTest extends ORMStandaloneClassTestCase{
         }
     }
 
+    @Test
+    public void shouldRetriveAllWhereWorkInOneDEPT(){
+        Session session = sf.openSession();
+        try {
+         session.createQuery("SELECT e.lastName ,c.name , d.name FROM "+Employee.class.getSimpleName() +" e  join e.company c  join  c.depts d").list().forEach(c->log.info("+++  {}",c));
 
-
-
+        } catch (Exception e) {
+            log.error("{}", e);
+        } finally {
+            session.close();
+        }
+    }
 }

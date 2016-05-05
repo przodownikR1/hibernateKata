@@ -140,4 +140,19 @@ public class JpqlCompanySaveAndFetchTest  extends ORMStandaloneClassTestCase{
             session.close();
         }
     }
+    @Test
+    public void shouldReturnOnlyFirstName(){
+        Session session = sf.openSession();
+        try {
+         List<String> lastNames = session.createQuery("SELECT e.firstName FROM "+Employee.class.getSimpleName()+" e join e.company c join c.depts d WHERE d.name = :name").
+                 setParameter("name", "JAVA").list();
+         log.info("lastNames {}",lastNames);
+
+        } catch (Exception e) {
+            log.error("{}", e);
+        } finally {
+            session.close();
+        }
+
+    }
 }

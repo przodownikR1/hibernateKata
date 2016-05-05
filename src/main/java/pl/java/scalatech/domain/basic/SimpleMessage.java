@@ -27,6 +27,7 @@ public class SimpleMessage implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Getter
     @Setter
+
     private Long id;
 
     @Column(name="MESSAGE_TEXT")

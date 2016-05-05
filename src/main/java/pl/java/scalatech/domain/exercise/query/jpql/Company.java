@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,16 +17,17 @@ import pl.java.scalatech.domain.common.Address;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString(exclude="address")
+@ToString(exclude="address",callSuper=true)
 @Builder
+
 public class Company extends AbstractEntity{
 
     private static final long serialVersionUID = 6179224510037798601L;
     private String name;
     private Address address;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="deptID")
+    @ManyToMany(cascade=CascadeType.ALL)
+    //@JoinColumn(name="deptID")
     private List<Department> depts;
 
 }

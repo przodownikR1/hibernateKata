@@ -23,9 +23,11 @@ import javax.persistence.Version;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @MappedSuperclass
 @EqualsAndHashCode(of="id")
+@ToString(exclude="version")
 public abstract class AbstractEntity implements Serializable {
     private static final long serialVersionUID = 1764429777262538648L;
     @Id
@@ -38,5 +40,5 @@ public abstract class AbstractEntity implements Serializable {
     @Getter
     private Long version;
 
-    
+
 }

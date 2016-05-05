@@ -12,13 +12,12 @@ import pl.java.scalatech.domain.AbstractEntity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(callSuper=true)
 @Builder
+
 public class Department extends AbstractEntity {
 
     private static final long serialVersionUID = 3220770055008180686L;
     private String name;
-
-
 
 }

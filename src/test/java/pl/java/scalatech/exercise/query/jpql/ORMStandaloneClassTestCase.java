@@ -16,6 +16,8 @@ public abstract class ORMStandaloneClassTestCase {
 
     protected static SessionFactory sf;
 
+
+
     @BeforeClass
     public static void setup() {
         // @formatter:off

@@ -60,42 +60,7 @@ public class JpqlTest extends ORMStandaloneClassTestCase{
         }
 
     }
-    @Test
-    public void shouldRetrieveAllCompany(){
-        Session session = sf.openSession();
-        try {
-         session.createQuery("FROM Company").list().forEach(c->log.info("{}",c));
-         session.createQuery("select count(*) FROM Company").list().forEach(c->log.info("{}",c));
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
-    @Test
-    public void shouldRetrieveAllDept(){
-        Session session = sf.openSession();
-        try {
-         session.createQuery("FROM "+Department.class.getSimpleName()).list().forEach(c->log.info("{}",c));
-         session.createQuery("select count(*) FROM "+Department.class.getSimpleName()).list().forEach(c->log.info("all dept size : {}",c));
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
-    @Test
-    public void shouldRetrieveAllEmployee(){
-        Session session = sf.openSession();
-        try {
-         session.createQuery("FROM "+Employee.class.getSimpleName()).list().forEach(c->log.info("{}",c));
-         session.createQuery("select count(*) FROM "+Employee.class.getSimpleName()).list().forEach(c->log.info("all employee : {}",c));
-        } catch (Exception e) {
-            log.error("{}", e);
-        } finally {
-            session.close();
-        }
-    }
+
     @Test
     public void shouldRetrieveByNaturalId(){
         Session session = sf.openSession();

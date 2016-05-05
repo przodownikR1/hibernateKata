@@ -11,7 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.java.scalatech.domain.AbstractEntity;
-import pl.java.scalatech.domain.oneToOne.joinTable.Address;
+
 
 @Entity
 @Data
@@ -24,7 +24,7 @@ public class User extends AbstractEntity {
 
     private String login;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "user")
     private Collection<Address> address = new ArrayList<>();
 
 }

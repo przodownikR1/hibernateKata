@@ -27,15 +27,15 @@ public class Address extends AbstractEntity{
 
 private String street;
 
-@Column(table = "t_city")
+@Column(table = "TCity")
 private String city;
 
-@Column(table = "t_city")
+@Column(table = "TCity")
 private String state;
 
-@Column(table = "t_city")
+@Column(table = "TCity")
 private String zipcode;
 
-@Column(table = "t_country")
+@Column(table = "TCountry")
 private String country;
 }

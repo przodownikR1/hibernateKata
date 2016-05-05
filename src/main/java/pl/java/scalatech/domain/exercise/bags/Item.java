@@ -7,8 +7,10 @@ import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 
+import pl.java.scalatech.domain.AbstractEntity;
+
 @Entity
-public class Item {
+public class Item extends AbstractEntity{
     @ElementCollection
     @CollectionTable(name = "IMAGE")
    /* @Column(name = "FILENAME")

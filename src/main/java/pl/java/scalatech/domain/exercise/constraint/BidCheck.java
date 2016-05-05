@@ -1,3 +1,5 @@
+package pl.java.scalatech.domain.exercise.constraint;
+
 import java.util.Date;
 
 import javax.persistence.Column;

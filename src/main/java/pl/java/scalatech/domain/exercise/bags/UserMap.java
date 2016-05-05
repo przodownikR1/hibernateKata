@@ -12,12 +12,13 @@ import javax.persistence.MapKeyColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.java.scalatech.domain.AbstractEntity;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserMap {
+public class UserMap extends AbstractEntity{
 
     @ElementCollection
 

@@ -13,6 +13,7 @@ import lombok.Data;
 public abstract class Product {
 private static final long serialVersionUID = -802306391915956578L;
 @Id
+private Long id;
 private String code;
 private String name;
 }

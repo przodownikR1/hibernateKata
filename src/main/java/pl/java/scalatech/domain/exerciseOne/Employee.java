@@ -45,11 +45,11 @@ public class Employee extends AbstractEntity{
     private int accessLevel;
 
     @ManyToOne( fetch=FetchType.LAZY )
-    @JoinColumn
+    @JoinColumn(name="employeeId")
     private Department department;
 
     @ManyToMany(mappedBy="employees")
-    @JoinColumn
+
     private Set<Project> projects;
 
 

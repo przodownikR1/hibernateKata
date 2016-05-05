@@ -23,7 +23,7 @@ public class EmbeddedUser extends AbstractEntity{
 
     private static final long serialVersionUID = 5277647989661060933L;
     @ElementCollection
-    @CollectionTable(name = "ADDRESS")
+    @CollectionTable(name = "ADDRESS_NOW")
     @AttributeOverride(
             name = "street",
             column = @Column(name = "U_STREET", nullable = false)

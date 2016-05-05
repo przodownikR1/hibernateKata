@@ -13,13 +13,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import pl.java.scalatech.domain.AbstractEntity;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @ToString
-public class Employee {
+public class Employee extends AbstractEntity{
     @Embedded
     @ElementCollection(fetch = FetchType.LAZY)
     private Map<String,PhoneNumber> phones = new HashMap<>();

@@ -28,7 +28,7 @@ public class Project extends AbstractEntity{
     protected String name;
     @ManyToMany
     @JoinTable(
-            name = "PROJECT_EMPLOYEE", schema = "JPA",
+            name = "PROJECT_EMPLOYEE",
             joinColumns = @JoinColumn(name = "EMPLOYEES_ID"),
             inverseJoinColumns = @JoinColumn(name = "PROJECTS_ID")
     )

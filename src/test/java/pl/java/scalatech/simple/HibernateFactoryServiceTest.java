@@ -1,6 +1,7 @@
 package pl.java.scalatech.simple;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.hibernate.Query;
@@ -41,14 +42,51 @@ public class HibernateFactoryServiceTest {
         tx.commit();
         session.close();
     }
+    
+    @Test
+    public void shouldSaveItemExplicit(){
+        log.info("+++  save item");
+        Session session = sf.openSession();
+        Transaction tx = session.beginTransaction();
+        Item item = new Item();
+        item.setName("knife");
+        item.setPrice(BigDecimal.valueOf(100));
+        session.save(item);
+        session.flush();                  
+        tx.commit();
+        session.close();
+        
+      
+        
+        
+    }
+    
+    
+    
     @Test
     public void shouldSaveThenLoadItem(){
         log.info("+++  load item");
         Session session = sf.openSession();
         Query query = session.createQuery("FROM Item");
-        query.list().forEach(i -> log.info("{}",i));
+        query.list().forEach(i -> log.info("BEFORE ::  {}",i));
+        
+        Item loaded = session.get(Item.class, 1l);
+        loaded.setName("now_fork");
+        
         session.close();
     }
 
+    
+    @Test
+    public void shouldSaveThenLoadItem2(){
+        log.info("+++  load item");
+        Session session = sf.openSession();
+        Query query = session.createQuery("FROM Item");
+        query.list().forEach(i -> log.info("NOW : !!!  {}",i));
+        
+      
+        
+        session.close();
+    }
 
 }
